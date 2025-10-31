@@ -8,19 +8,19 @@ dotenv.config();
 
 const app = express();
 
-// Configuração do CORS para aceitar requisições de múltiplas origens
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(",")
-  : ["http://localhost:3000"];
+app.use(
+  cors({
+    origin: [
+      "https://case-welhome-1.onrender.com",
+      "http://localhost:5173",
+      "http://localhost:3000",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
-const corsOptions = {
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.use(router);
