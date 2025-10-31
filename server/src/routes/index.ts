@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/properties', async (req, res) => {
     const data = await property.findAll()
-    return res.status(200).json(data); // Corrigi a ordem: status primeiro, depois json
+    return res.status(200).json(data);
 })
 
 router.post('/properties', async (req, res) => {
